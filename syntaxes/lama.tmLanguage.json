@@ -1,0 +1,99 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Lama",
+	"patterns": [
+		{
+			"include": "#storages"
+		},
+		{
+			"include": "#entities"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#constants"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.line.double-dash.lama",
+					"match": "--.*$"
+				},
+				{
+					"name": "comment.line.block.lama",
+					"begin": "\\(\\*",
+					"end": "\\*\\)"
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"name": "constant.numeric.lama",
+					"match": "-?[0-9]+"
+				},
+				{
+					"name": "constant.character.lama",
+					"match": "'([^']|''|\\n|\\t)'"
+				},
+				{
+					"name": "constant.language.lama",
+					"match": "\\b(true|false)\\b"
+				}
+			]
+		},
+		"storages": {
+			"patterns": [
+				{
+					"name": "storage.modifier",
+					"match": "\\b(local|public)\\b"
+				}
+			]
+		},
+		"entities": {
+			"patterns": [
+				{
+					"name": "entity.name.tag",
+					"match": "\\b[A-Z][a-zA-Z_0-9]*"
+				},
+				{
+					"name": "entity.other",
+					"match": "(#boxed|#unboxed|#string|#array|#sexp|#fun)"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.lama",
+					"match": "\\b(after|at|before|case|do|elif|else|esac|eta|fi|for|fun|if|import|infix|infixl|infixr|lazy|length|od|of|repeat|return|skip|string|then|until|when|while)\\b"
+				},
+				{
+					"name": "keyword.operator.lama",
+					"match": "\\s(:|!!|&&|==|!=|<=|<|>=|>|\\+|−|\\∗|/|%)\\s"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.lama",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.lama",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.lama"
+}

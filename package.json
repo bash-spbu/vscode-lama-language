@@ -1,0 +1,25 @@
+{
+    "name": "lama-language",
+    "displayName": "Lama language",
+    "description": "Syntax highlighting only",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.42.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "lama",
+            "aliases": ["Lama", "lama"],
+            "extensions": [".lama"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "lama",
+            "scopeName": "source.lama",
+            "path": "./syntaxes/lama.tmLanguage.json"
+        }]
+    }
+}
