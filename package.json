@@ -1,14 +1,23 @@
 {
     "name": "lama-language",
     "displayName": "Lama language",
-    "description": "Syntax highlighting only",
+    "description": "Syntax highlighting for the Lama language",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/bash-spbu/vscode-lama-language.git"
+    },
+    "galleryBanner": {
+        "color": "#00C800",
+        "theme": "light"
+    },
     "version": "0.2.0",
     "engines": {
-        "vscode": "^1.42.0"
+        "vscode": "^1.30.0"
     },
     "categories": [
         "Programming Languages"
     ],
+    "icon": "images/icon.png",
     "contributes": {
         "languages": [
             {

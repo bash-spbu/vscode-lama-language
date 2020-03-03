@@ -1,0 +1,10 @@
+{
+    "iconDefinitions": {
+        "_lama_file_icon": {
+            "iconPath": "../images/icon.png"
+        }
+    },
+    "languageIds": {
+        "lama": "_lama_file_icon"
+    }
+}
