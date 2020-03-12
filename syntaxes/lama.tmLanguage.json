@@ -3,6 +3,15 @@
 	"name": "Lama",
 	"patterns": [
 		{
+			"include": "#comments"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#constants"
+		},
+		{
 			"include": "#storages"
 		},
 		{
@@ -12,13 +21,10 @@
 			"include": "#keywords"
 		},
 		{
-			"include": "#strings"
+			"include": "#support"
 		},
 		{
-			"include": "#comments"
-		},
-		{
-			"include": "#constants"
+			"include": "#variables"
 		}
 	],
 	"repository": {
@@ -39,7 +45,7 @@
 			"patterns": [
 				{
 					"name": "constant.numeric.lama",
-					"match": "-?[0-9]+"
+					"match": "\\b-?[0-9]+\\b"
 				},
 				{
 					"name": "constant.character.lama",
@@ -54,7 +60,7 @@
 		"storages": {
 			"patterns": [
 				{
-					"name": "storage.modifier",
+					"name": "storage.modifier.lama",
 					"match": "\\b(local|public)\\b"
 				}
 			]
@@ -62,11 +68,22 @@
 		"entities": {
 			"patterns": [
 				{
-					"name": "entity.name.tag",
+					"name": "entity.name.tag.lama",
 					"match": "\\b[A-Z][a-zA-Z_0-9]*"
 				},
 				{
-					"name": "entity.other",
+					"name": "meta.function.lama",
+					"begin": "(fun)",
+					"end": "\\(",
+					"beginCaptures": {
+						"1": {
+							"name": "keyword.control.lama"
+						}
+					},
+					"contentName": "entity.name.function.lama"
+				},
+				{
+					"name": "entity.other.lama",
 					"match": "(#boxed|#unboxed|#string|#array|#sexp|#fun)"
 				}
 			]
@@ -78,8 +95,12 @@
 					"match": "\\b(after|at|before|case|do|elif|else|esac|eta|fi|for|fun|if|import|infix|infixl|infixr|lazy|length|od|of|repeat|return|skip|string|then|until|when|while)\\b"
 				},
 				{
+					"name": "delimiter.lama",
+					"match": "->|\\s\\|\\s|\\s=[^\\+\\*/%\\$#@!\\|&\\^\\?<>:=\\\\-]"
+				},
+				{
 					"name": "keyword.operator.lama",
-					"match": "\\s(:|!!|&&|==|!=|<=|<|>=|>|\\+|−|\\∗|/|%)\\s"
+					"match": "(\\+|\\*|/|%|\\$|#|@|!|\\||&|\\^|\\?|<|>|:|=|\\\\|-)+"
 				}
 			]
 		},
@@ -91,6 +112,42 @@
 				{
 					"name": "constant.character.escape.lama",
 					"match": "\\\\."
+				}
+			]
+		},
+		"support": {
+			"patterns": [
+				{
+					"name": "meta.function-call.lama",
+					"begin": "([a-z][a-zA-Z_0-9]*)\\s*\\(",
+					"end": "\\)",
+					"beginCaptures": {
+						"1": {
+							"name": "support.function.any-method.lama"
+						}
+					},
+					"patterns": [
+						{
+							"include": "$self"
+						}
+					]
+				},
+				{
+					"match": "\\.([a-z][a-zA-Z_0-9]*)",
+					"name": "meta.function-call.lama",
+					"captures": {
+						"1": {
+							"name": "support.function.any-method.lama"
+						}
+					}
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"name": "variable.other.lama",
+					"match": "\\b[a-z][a-zA-Z_0-9]*"
 				}
 			]
 		}

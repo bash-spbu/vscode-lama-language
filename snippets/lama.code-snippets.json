@@ -1,0 +1,251 @@
+{
+    "case inline": {
+        "prefix": [
+            "case-1"
+        ],
+        "body": [
+            "case $1 of $2 -> $0 esac"
+        ],
+        "description": "one line case ... of ... esac"
+    },
+    "case multiple": {
+        "prefix": [
+            "case-of"
+        ],
+        "body": [
+            "case $1 of",
+            "\t$2 -> $3",
+            "| $4 -> $0",
+            "esac"
+        ],
+        "description": "case ... of ... esac"
+    },
+    "if then fi": {
+        "prefix": [
+            "if-then"
+        ],
+        "body": [
+            "if $1 then $0 fi"
+        ],
+        "description": "if ... then ... fi"
+    },
+    "if else": {
+        "prefix": [
+            "if-else"
+        ],
+        "body": [
+            "if $1",
+            "then $2",
+            "else $0",
+            "fi"
+        ],
+        "description": "if ... then ... else ... fi"
+    },
+    "while": {
+        "prefix": [
+            "while"
+        ],
+        "body": [
+            "while $1 do",
+            "\t$0",
+            "od"
+        ],
+        "description": "while ... do ... od"
+    },
+    "repeat": {
+        "prefix": [
+            "repeat"
+        ],
+        "body": [
+            "repeat",
+            "\t$0",
+            "until $1"
+        ],
+        "description": "repeat ... until ..."
+    },
+    "for": {
+        "prefix": [
+            "for-i"
+        ],
+        "body": [
+            "for local ${1:i} = 0, ${1:i} < $2, ${1:i} := ${1:i} + 1 do",
+            "\t$0",
+            "od"
+        ],
+        "description": "for i cycle"
+    },
+    "lambda": {
+        "prefix": [
+            "fun-lambda",
+            "lambda"
+        ],
+        "body": [
+            "fun (${1:args}) { $0 }"
+        ],
+        "description": "lambda"
+    },
+    "function": {
+        "prefix": [
+            "function"
+        ],
+        "body": [
+            "${1:public }fun ${2:name}(${3:args}) {",
+            "\t$0",
+            "}"
+        ],
+        "description": "lambda"
+    },
+    "local var": {
+        "prefix": [
+            "local-var"
+        ],
+        "body": [
+            "local ${1:name} = $0;"
+        ],
+        "description": "local var definition"
+    },
+    "var": {
+        "prefix": [
+            "var"
+        ],
+        "body": [
+            "${1|local,public|} ${2:name} = $0;"
+        ],
+        "description": "var definition"
+    },
+    "foldl list": {
+        "prefix": [
+            "foldl-list"
+        ],
+        "body": [
+            "foldl(fun (${3:acc}, ${4:item}) { $0 }, ${2:acc}, ${1:list})"
+        ],
+        "description": "Folds a list `list` with a function `f` and initial value `acc` is the left-to-right manner. The function ” f ” takes two arguments — an accumulator and a list element."
+    },
+    "foldr list": {
+        "prefix": [
+            "foldr-list"
+        ],
+        "body": [
+            "foldr(fun (${3:acc}, ${4:elem}) { $0 }, ${2:acc}, ${1:list})"
+        ],
+        "description": "Folds a list `list` with a function `f` and initial value `acc` is the right-to-left manner. The function ” f ” takes two arguments — an accumulator and a list element."
+    },
+    "iter list": {
+        "prefix": [
+            "iter-list"
+        ],
+        "body": [
+            "iter($0, ${1:list})"
+        ],
+        "description": "Applies a function `f` to the elements of the list `list` in the giver order."
+    },
+    "map list": {
+        "prefix": [
+            "map-list"
+        ],
+        "body": [
+            "map($0, ${1:list})"
+        ],
+        "description": "Maps a function `f` to the elements of the list `list` and returns a fresh list if images in the same order."
+    },
+    "find list": {
+        "prefix": [
+            "find-list"
+        ],
+        "body": [
+            "find($0, ${1:list})"
+        ],
+        "description": "Finds a value in a list `list` which satisfies the predicate `f`. The predicate must return integer value, treated as boolean. Returns `None` if no element satisfies `f` and `Some (v)` otherwise, where `v` — the first value to satisfy `f`."
+    },
+    "filter list": {
+        "prefix": [
+            "filter-list"
+        ],
+        "body": [
+            "filter($0, ${1:list})"
+        ],
+        "description": "Removes all values, not satisfying the predicate `f`, from the list `l`. The function `f` should return integers, treated as booleans."
+    },
+    "map array": {
+        "prefix": [
+            "map-array"
+        ],
+        "body": [
+            "mapArray($0, ${1:arr})"
+        ],
+        "description": "Maps a function `f` over an array `arr` and returns a new array."
+    },
+    "foldl array": {
+        "prefix": [
+            "foldl-array"
+        ],
+        "body": [
+            "foldlArray(fun (${3:acc}, ${4:item}) { $0 }, ${2:acc}, ${1:arr})"
+        ],
+        "description": "Folds an array `arr` with a function `f` and initial value `acc` is the left-to-right manner. The function `f` takes two arguments — an accumulator and an array element."
+    },
+    "foldr array": {
+        "prefix": [
+            "foldr-array"
+        ],
+        "body": [
+            "foldrArray(fun (${3:acc}, ${4:item}) { $0 }, ${2:acc}, ${1:arr})"
+        ],
+        "description": "Folds an array `arr` with a function `f` and initial value `acc` is the right-to-left manner. The function `f` takes two arguments — an accumulator and an array element."
+    },
+    "iter array": {
+        "prefix": [
+            "iter-array"
+        ],
+        "body": [
+            "iterArray($0, ${1:arr})"
+        ],
+        "description": "Applies a function `f` to each element of an array `arr`; does not return a value."
+    },
+    "iteri array": {
+        "prefix": [
+            "iteri-array"
+        ],
+        "body": [
+            "iteriArray($0, ${1:arr})"
+        ],
+        "description": "Applies a function `f` to each element of an array `arr` and its index (index first); does not return a value."
+    },
+    "init array": {
+        "prefix": [
+            "init-array"
+        ],
+        "body": [
+            "initArray(${1:size}, $0)"
+        ],
+        "description": "Takes an integer value `size` and a function `f` and creates an array `[f(0),...,f(n-1)]`"
+    },
+    "iter map": {
+        "prefix": [
+            "iter-map"
+        ],
+        "body": [
+            "iterMap(fun (${2:key}, ${3:value}) { $0 }, ${1:map})"
+        ],
+        "description": "Iterates a function `f` over the bindings of map `map`. The function takes two arguments (key and value). The bindings are enumerated in an ascending order."
+    },
+    "map map": {
+        "prefix": [
+            "map-map"
+        ],
+        "body": [
+            "mapMap(fun (${2:key}, ${3:value}) { $0 }, ${1:map})"
+        ],
+        "description": "Maps a function `f` over all values of `map` and returns a new map of results."
+    },
+    "fold map": {
+        "prefix": [
+            "fold-map"
+        ],
+        "body": [
+            "foldMap(fun (${3:acc}, [${4:key}, ${5:value}]) { $0 }, ${2:acc}, ${1:map})"
+        ],
+        "description": "Folds a map `map` using a function `f` and initial value `acc`. The function takes an accumulator and a pair key-value. The bindings are enumerated in an ascending order."
+    }
+}
