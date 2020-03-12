@@ -1,9 +1,3 @@
 # Change Log
 
-All notable changes to the "lama-language" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
-- Initial release
+- [0.9.0] First working prototype with syntax highlighting, snippets and documenting comments

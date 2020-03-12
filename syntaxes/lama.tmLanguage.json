@@ -28,16 +28,112 @@
 		}
 	],
 	"repository": {
+		"documenting-type": {
+			"patterns": [
+				{
+					"name": "constant.character.escape.lama",
+					"match": "[a-z][a-zA-Z_0-9]*"
+				},
+				{
+					"name": "meta.data-constructor.lama",
+					"match": "\\|\\s*([A-Z][a-zA-Z_0-9]*)",
+					"captures": {
+						"1" : {
+							"name": "entity.name.type.lama"
+						}
+					}
+				},
+				{
+					"name": "entity.name.tag.lama",
+					"match": "[A-Z][a-zA-Z_0-9]*"
+				}
+			]
+		},
+		"documenting-comments": {
+			"patterns": [
+				{
+					"name": "meta.docs-comment.lama",
+					"match": "(@param)\\s+([a-zA-Z_0-9]*)",
+					"captures": {
+						"1": {
+							"name": "support.type.lama"
+						},
+						"2": {
+							"name": "variable.parameter.lama"
+						}
+					}
+				},
+				{
+					"name": "meta.docs-comment.lama",
+					"match": "(@returns)",
+					"captures": {
+						"1": {
+							"name": "support.type.lama"
+						}
+					}
+				},
+				{
+					"name": "meta.docs-comment.lama",
+					"begin": "(@begintype)\\s",
+					"end": "(@endtype)",
+					"beginCaptures": {
+						"1": {
+							"name": "support.type.lama"
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"name": "support.type.lama"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#documenting-type"
+						}
+					]
+				},
+				{
+					"name": "meta.docs-comment.lama",
+					"begin": "(@type)\\s",
+					"end": "$",
+					"beginCaptures": {
+						"1": {
+							"name": "support.type.lama"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#documenting-type"
+						}
+					]
+				},
+				{
+					"name": "markup.bold.lama",
+					"match": "\\b[tT][oO][dD][oO]\\b"
+				}
+			]
+		},
 		"comments": {
 			"patterns": [
 				{
 					"name": "comment.line.double-dash.lama",
-					"match": "--.*$"
+					"begin": "--",
+					"end": "$",
+					"patterns": [
+						{
+							"include": "#documenting-comments"
+						}
+					]
 				},
 				{
 					"name": "comment.line.block.lama",
 					"begin": "\\(\\*",
-					"end": "\\*\\)"
+					"end": "\\*\\)",
+					"patterns": [
+						{
+							"include": "#documenting-comments"
+						}
+					]
 				}
 			]
 		},
@@ -112,6 +208,10 @@
 				{
 					"name": "constant.character.escape.lama",
 					"match": "\\\\."
+				},
+				{
+					"name": "string.regexp.lama",
+					"match": "%[a-zA-Z]"
 				}
 			]
 		},

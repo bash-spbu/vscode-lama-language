@@ -1,5 +1,9 @@
 # Lama language
 
+## How it looks like
+
+![Here should be a screenshot example](screenshot.png)
+
 ## Description
 
 Silly but brave VSCode plugin for the [Lama language](https://github.com/JetBrains-Research/Lama).
@@ -7,7 +11,19 @@ Silly but brave VSCode plugin for the [Lama language](https://github.com/JetBrai
 Provides:
 
 - Basic syntax highlighting
+- Documenting comments support:
+  - `@param name` function parameter
+  - `@returns` what function returns
+  - `@type` *one line* type description in Haskell notation
+  - `@begintype` ...  `@endtype` multiline type description in Haskell notation
 - Some snippets for control structures and Stdlib functions
+  - `case-of`
+  - `if-then`
+  - `fori`
+  - `repeat`
+  - `local-var`
+  - `function`
+  - `fold`, `iter`, `map` for different collections
 
 ## Demo
 
